@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "author": "zhaobenx",
+  "repo": "https://github.com/zhaobenx/logseq-table-view",
   "logseq": {
     "id": "logseq-table-view",
     "icon": "./icon.svg",
