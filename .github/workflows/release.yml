@@ -24,15 +24,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy README and package.json to dist
+      - name: Prepare Release Bundle
         run: |
-          cp README.md dist/
-          cp package.json dist/
-          cp icon.svg dist/
+          mkdir release-bundle
+          cp -r dist release-bundle/
+          cp package.json release-bundle/
+          cp icon.svg release-bundle/
+          cp README.md release-bundle/
+          if [ -f "LICENSE" ]; then cp LICENSE release-bundle/; fi
 
       - name: Zip distribution
         run: |
-          zip -r logseq-table-view-${{ github.ref_name }}.zip dist
+          cd release-bundle
+          zip -r ../logseq-table-view-${{ github.ref_name }}.zip .
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
